@@ -22,7 +22,7 @@ const App: React.FC = () => {
   const [settings, setSettings] = useState<UserSettings>(() => {
     const saved = localStorage.getItem('striker_settings');
     const defaults = {
-      appTitle: 'StrikerStats',
+      appTitle: 'OnTarget',
       profileImage: null,
       appIcon: null,
       themeColor: '#10b981',
