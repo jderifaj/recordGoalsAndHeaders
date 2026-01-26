@@ -1,0 +1,7 @@
+{
+  "name": "StrikerStats - Soccer Accuracy Tracker",
+  "description": "A high-performance mobile application for soccer players to track shot accuracy, analyze performance trends, and share session data.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
