@@ -15,53 +15,6 @@
       content="Track your soccer shot accuracy and header performance with AI-powered coaching analysis."
     />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta
-      property="og:url"
-      content="https://recordgoalsandheaders.netlify.app/"
-    />
-    <meta
-      property="og:title"
-      content="StrikerStats - Soccer Accuracy Tracker"
-    />
-    <meta
-      property="og:description"
-      content="Track your soccer shot accuracy and header performance with AI-powered coaching analysis."
-    />
-    <meta
-      property="og:image"
-      content="https://recordgoalsandheaders.netlify.app/strikerstat-og.jpg"
-    />
-    <meta
-      property="og:image:secure_url"
-      content="https://recordgoalsandheaders.netlify.app/strikerstat-og.jpg"
-    />
-    <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="StrikerStats App Preview" />
-    <meta property="og:site_name" content="StrikerStats" />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta
-      property="twitter:url"
-      content="https://recordgoalsandheaders.netlify.app/"
-    />
-    <meta
-      property="twitter:title"
-      content="StrikerStats - Soccer Accuracy Tracker"
-    />
-    <meta
-      property="twitter:description"
-      content="Track your soccer shot accuracy and header performance with AI-powered coaching analysis."
-    />
-    <meta
-      property="twitter:image"
-      content="https://recordgoalsandheaders.netlify.app/strikerstat-og.jpg"
-    />
-
     <!-- PWA / iOS app behavior -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta
@@ -72,7 +25,7 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -80,17 +33,98 @@
         font-family: "Inter", sans-serif;
         -webkit-tap-highlight-color: transparent;
         overscroll-behavior-y: contain;
+        background-color: #f8fafc;
       }
-      .ios-blur {
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
+
+      /* Liquid Background Animation */
+      .liquid-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f0fdf4 100%);
+        overflow: hidden;
       }
+
+      .liquid-blob {
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0) 70%);
+        filter: blur(60px);
+        border-radius: 50%;
+        animation: move 20s infinite alternate;
+      }
+
+      .blob-2 {
+        background: radial-gradient(circle, rgba(14, 165, 233, 0.1) 0%, rgba(14, 165, 233, 0) 70%);
+        width: 600px;
+        height: 600px;
+        right: -100px;
+        top: 100px;
+        animation-duration: 25s;
+        animation-delay: -5s;
+      }
+
+      @keyframes move {
+        from { transform: translate(-10%, -10%) rotate(0deg); }
+        to { transform: translate(10%, 10%) rotate(360deg); }
+      }
+
+      /* Glass Utility Classes */
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.45);
+        backdrop-filter: blur(16px) saturate(180%);
+        -webkit-backdrop-filter: blur(16px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+      }
+
+      .glass-panel-dark {
+        background: rgba(15, 23, 42, 0.7);
+        backdrop-filter: blur(20px) saturate(160%);
+        -webkit-backdrop-filter: blur(20px) saturate(160%);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+      }
+
+      .glass-button {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .glass-button:active {
+        transform: scale(0.96);
+        background: rgba(255, 255, 255, 0.3);
+      }
+
       .pb-safe {
         padding-bottom: env(safe-area-inset-bottom);
       }
       .pt-safe {
         padding-top: env(safe-area-inset-top);
       }
+
+      /* Custom Quote Animation */
+      @keyframes slideInRight {
+        0% { transform: translateX(-20px); opacity: 0; }
+        100% { transform: translateX(0); opacity: 1; }
+      }
+
+      .quote-animate {
+        opacity: 0;
+        animation: slideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        animation-delay: 0.6s;
+      }
+
+      /* Scrollbar Hide */
+      ::-webkit-scrollbar { display: none; }
+      * { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
     <script type="importmap">
       {
@@ -106,9 +140,12 @@
       }
     </script>
   </head>
-  <body class="bg-slate-50 text-slate-900">
+  <body class="text-slate-900">
+    <div class="liquid-bg">
+      <div class="liquid-blob"></div>
+      <div class="liquid-blob blob-2"></div>
+    </div>
     <div id="root"></div>
-    <!-- Entry point script -->
     <script type="module" src="/index.tsx"></script>
   </body>
 </html>
