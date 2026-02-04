@@ -1,17 +1,16 @@
-
 export enum ShotTarget {
-  TOP_LEFT = 'Top Left',
-  TOP_RIGHT = 'Top Right',
-  BOTTOM_LEFT = 'Bottom Left',
-  BOTTOM_RIGHT = 'Bottom Right',
-  CENTER = 'Center',
-  CROSSBAR = 'Crossbar',
-  POST = 'Post'
+  TOP_LEFT = "Top Left",
+  TOP_RIGHT = "Top Right",
+  BOTTOM_LEFT = "Bottom Left",
+  BOTTOM_RIGHT = "Bottom Right",
+  CENTER = "Center",
+  CROSSBAR = "Crossbar",
+  POST = "Post",
 }
 
 export enum DrillType {
-  SHOOTING = 'Shooting',
-  HEADER = 'Header'
+  SHOOTING = "Shooting",
+  HEADER = "Header",
 }
 
 export interface Rep {
@@ -20,10 +19,11 @@ export interface Rep {
   exerciseName: string;
   // Shared fields (repurposed for Header)
   shotsTaken?: number; // Attempts
-  shotsMade?: number;  // Successful Clearances
-  distance?: number;   // Longest Clearance in Feet
+  shotsMade?: number; // Successful Clearances
+  distance?: number; // Longest Clearance in Feet
   // Shooting specific
   targetArea?: ShotTarget;
+  foot?: "R" | "L";
   // Legacy
   clearedDefensiveThird?: boolean;
   timestamp: number;
